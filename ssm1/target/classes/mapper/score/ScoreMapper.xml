@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcm073.xumaofeng.score.mapper.ScoreMapper">
+
+	<delete id="deleteScoreByGradeId" parameterType="int">
+		delete from score where courseid=#{cid}
+	</delete>
+	<delete id="deleteStudentByGradeId" parameterType="int">
+		delete from score where stuid in (select stuid from student where gradeid=#{gradeid})
+	</delete>
+	<delete id="deleteGradeByGradeId" parameterType="int">
+		delete from score where stuid=#{stuid}
+	</delete>
+
+
+</mapper>

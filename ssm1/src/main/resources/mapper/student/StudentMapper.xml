@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcm073.xumaofeng.student.mapper.StudentMapper">
+	<select id="queryAllStudent" resultMap="studentMap" parameterType="Student">
+		select * from student s,grade g where s.gradeid=g.gradeid
+		<if test="stuname!=null and stuname!=''">and stuname like concat('%',#{stuname},'%')</if>
+		<if test="stunum!=null and stunum!=''">and stunum=#{stunum}</if>
+		order by stuid desc
+	</select>
+	<resultMap type="Student" id="studentMap" autoMapping="true">
+		<id column="stuid" property="stuid"/>
+		<association property="grade" resultMap="gradeMap"></association>
+	</resultMap>
+	<resultMap type="Grade" id="gradeMap" autoMapping="true">
+		<id column="gradeid" property="gradeid"/>
+	</resultMap>
+	<select id="detailStudent" resultMap="studentMap" parameterType="int">
+		select * from student s,grade g where s.gradeid=g.gradeid and s.stuid=#{stuid}
+	</select>
+	
+	
+	
+</mapper>

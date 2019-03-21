@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kgc.tangcco.tcm073.xumaofeng.grade.mapper.GradeMapper">
+	
+	
+	<resultMap type="Grade" id="gradeMap" autoMapping="true">
+		<id column="gradeid" property="gradeid"/>
+		<collection property="students" resultMap="studentMap"></collection>
+	</resultMap>
+	<resultMap type="Student" id="studentMap" autoMapping="true">
+		<id column="stuid" property="stuid"/>
+	</resultMap>
+	
+	<select id="queryAllGrade" resultMap="gradeMap">
+		select * from grade order by gradeid desc
+	</select>
+	<select id="queryGradeAndStudent" resultMap="gradeMap">
+		select * from grade 
+	</select>
+	
+	
+	
+</mapper>
